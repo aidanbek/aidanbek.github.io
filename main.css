@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
     overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 section {
@@ -25,4 +26,10 @@ section {
 #contacts a {
     text-decoration: none;
     color: #000000;
+}
+
+@media (max-width: 768px) {
+    #contacts h2 {
+        font-size: 2rem;
+    }
 }
