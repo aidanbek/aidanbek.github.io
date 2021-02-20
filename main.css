@@ -11,16 +11,24 @@ section {
     background-color: #ffffff;
 }
 
-#navbarNavDropdown a, .navbar-brand {
-    font-family: 'Goldman', cursive;
-}
-
 #navbarNavDropdown a {
     font-size: 1.2em;
 }
 
 .navbar-brand {
     font-size: 2rem;
+}
+
+#navbarNavDropdown a, .navbar-brand {
+    font-family: 'Goldman', cursive;
+}
+
+#navbarNavDropdown .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, .7);
+}
+
+#navbarNavDropdown .navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 1);
 }
 
 #contacts a {
