@@ -154,6 +154,11 @@
         crossorigin="anonymous"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
         const getCurrentSection = function (sections) {
             let currentSection = null;
 
@@ -189,14 +194,39 @@
 
         const scrollify = function (e) {
             const isScrollDown = e.deltaY > 0;
-            const sections = document.getElementsByTagName('section');
             handleSectionScrolling(sections, isScrollDown);
         }
 
         const body = document.getElementsByTagName('body')[0];
+        const sections = document.getElementsByTagName('section');
         const events = ['DOMMouseScroll', 'wheel', 'mousewheel'];
 
-        events.map(event => body.addEventListener(event, scrollify));
+        events.map(event => body.addEventListener(event, scrollify, false));
+
+        body.addEventListener('touchstart', function (event) {
+            touchStartX = event.changedTouches[0].screenX;
+            touchStartY = event.changedTouches[0].screenY;
+        }, false);
+
+        body.addEventListener('touchend', function (event) {
+            touchEndX = event.changedTouches[0].screenX;
+            touchEndY = event.changedTouches[0].screenY;
+            handleGesture();
+        });
+
+        const handleGesture = function () {
+            let isScrollDown;
+
+            if (touchEndY > touchStartY) {
+                isScrollDown = false;
+            }
+
+            if (touchEndY < touchStartY) {
+                isScrollDown = true;
+            }
+
+            handleSectionScrolling(sections, isScrollDown);
+        }
     });
 </script>
 
